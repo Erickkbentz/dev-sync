@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dev-sync"
+version = "0.1.0"
+description = "A tool to sync development environments across machines"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    {name = "Erick Benitez-Ramos", email = "erickbenitez336@gmail.com"}
+]
+dependencies = [
+    "rich>=13.0.0, <14.0.0"
+]
+
+[project.urls]
+repository = "https://github.com/Erickkbentz/dev-sync"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+dev-sync = "dev_sync.main:dev_sync"
