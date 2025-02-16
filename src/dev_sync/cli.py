@@ -7,12 +7,13 @@ from dev_sync.commands.bootstrap import bootstrap_handler
 from dev_sync.commands.init import init_handler
 from dev_sync.commands.sync import sync_handler
 
+
 def main():
     # Create the CLI
     dev_sync = CLI(
         title="DevSync",
         description="CLI to sync development enviornments across workspaces.",
-        version=__version__
+        version=__version__,
     )
 
     # Create Subcommands with handlers
@@ -30,15 +31,11 @@ def main():
     sync_command = Command(
         name="sync",
         description="Sync remote DevSync config from local changes.",
-        handler=sync_handler
+        handler=sync_handler,
     )
-    
+
     # Add subcommands to CLI
-    dev_sync.add_subcommands([
-        init_command,
-        bootstrap_command,
-        sync_command
-    ])
+    dev_sync.add_subcommands([init_command, bootstrap_command, sync_command])
 
     # Execute the CLI
     dev_sync.run()
