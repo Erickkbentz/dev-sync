@@ -15,6 +15,22 @@ dependencies = [
     "saiuncli>=0.1.8"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0,<8",
+    "black>=22.0,<23",
+    "flake8",
+    "build",
+    "twine"
+]
+all = [
+    "pytest>=7.0,<8",
+    "black>=22.0,<23",
+    "flake8",
+    "build",
+    "twine",
+]
+
 [project.urls]
 repository = "https://github.com/Erickkbentz/dev-sync"
 
