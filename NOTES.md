@@ -2,4 +2,4 @@
 
 - dev-sync init
 - dev-sync bootstrap
-- dev-sync refresh
+- dev-sync sync
