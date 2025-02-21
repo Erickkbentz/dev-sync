@@ -1,4 +1,5 @@
 from saiuncli.cli import CLI
+from saiuncli.cli import Argument
 from saiuncli.command import Command
 
 from dev_sync import __version__
@@ -21,6 +22,13 @@ def main():
         name="init",
         description="Initialize a new DevSync configuration based on the current machine.",
         handler=init_handler,
+        arguments=[
+            Argument(
+                name="name",
+                description="Name of the configuration to initialize.",
+                required=True,
+            )
+        ]
     )
     bootstrap_command = Command(
         name="bootstrap",
