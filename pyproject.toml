@@ -12,7 +12,7 @@ authors = [
     {name = "Erick Benitez-Ramos", email = "erickbenitez336@gmail.com"}
 ]
 dependencies = [
-    "saiuncli>=0.1.9"
+    "saiuncli>=0.1.10"
 ]
 
 [project.optional-dependencies]
