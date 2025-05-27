@@ -1,5 +1,5 @@
 from saiuncli.cli import CLI
-from saiuncli.cli import Argument
+from saiuncli.option import Option
 from saiuncli.command import Command
 
 from dev_sync import __version__
@@ -28,14 +28,14 @@ def main():
         name="init",
         description="Initialize a new devsync_config.yaml based on the current machine’s environment and settings.",
         handler=init_handler,
-        arguments=[
-            Argument(
-                name="git-repo",
+        Options=[
+            Option(
+                flags=["-r", "--git-repo"],
                 description="The Git repository to use for syncing. If not provided, a new repository will be created.",
                 required=False,
             ),
-            Argument(
-                name="config-dir",
+            Option(
+                flags=["-d", "--config-dir"],
                 description="The directory to save the configuration file. Defaults to ~/.dev-sync.",
                 required=False,
             ),
@@ -46,14 +46,14 @@ def main():
         name="clone",
         description="Clone a devsync_config.yaml from a remote repository.",
         handler=clone_handler,
-        arguments=[
-            Argument(
-                name="git-repo",
+        options=[
+            Option(
+                flags=["-r", "--git-repo"],
                 description="The Git repository to clone the configuration from.",
                 required=True,
             ),
-            Argument(
-                name="config-dir",
+            Option(
+                flags=["-d", "--config-dir"],
                 description="The directory to save the cloned configuration file. Defaults to ~/.dev-sync.",
                 required=False,
             ),
@@ -82,29 +82,29 @@ def main():
         name="add-secret",
         description="Add a new secret to AWS Secrets Manager and update the config file.",
         handler=add_secret_handler,
-        arguments=[
-            Argument(
-                name="secret-name",
+        options=[
+            Option(
+                flags=["-n", "--secret-name"],
                 description="The name of the secret in Secrets Manager.",
                 required=True,
             ),
-            Argument(
-                name="secret-string",
+            Option(
+                flags=["-s", "--secret-string"],
                 description="The secret string to upload",
                 required=False,
             ),
-            Argument(
-                name="file",
+            Option(
+                flags=["-f", "--file"],
                 description="Path to the file containing the secret to upload.",
                 required=False,
             ),
-            Argument(
-                name="target-path",
+            Option(
+                flags=["-p", "--target-path"],
                 description="Target path on the machine to save the secret to when syncing.",
                 required=False,
             ),
-            Argument(
-                name="target-env-var",
+            Option(
+                flags=["-e", "--target-env"],
                 description="Environment variable name to set the secret to when syncing.",
                 required=False,
             ),
@@ -115,24 +115,24 @@ def main():
         name="add-private-file",
         description="Upload a private file or folder to S3 and update the config file.",
         handler=add_private_file_handler,
-        arguments=[
-            Argument(
-                name="name",
+        Option=[
+            Option(
+                flags=["-n", "--name"],
                 description="The name to reference this private file.",
                 required=True,
             ),
-            Argument(
-                name="file",
-                description="Path to the file to upload.",
+            Option(
+                flags=["-f", "--file"],
+                description="Path to the private file to upload.",
                 required=False,
             ),
-            Argument(
-                name="folder",
-                description="Path to the folder to upload.",
+            Option(
+                flags=["-d", "--directory"],
+                description="Path to the private directory to upload.",
                 required=False,
             ),
-            Argument(
-                name="target-path",
+            Option(
+                flags=["-p", "--target-path"],
                 description="Target path on the machine to save the file or folder when syncing.",
                 required=True,
             ),
